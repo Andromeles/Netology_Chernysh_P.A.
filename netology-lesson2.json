@@ -1,0 +1,35 @@
+{
+    "builders": [
+        {
+            "type": "yandex",
+            "token": "XXX-XXX-XXX",
+            "folder_id": "XXX-XXX-XXX",
+            "zone": "ru-central1-a",
+            "image_name": "debian-11-docker",
+            "image_description": "my custom debian with docker",
+            "source_image_family": "debian-11",
+            "subnet_id": "XXX-XXX-XXX",
+            "use_ipv4_nat": true,
+            "disk_type": "network-hdd",
+            "ssh_username": "debian"
+        }
+    ],
+    "provisioners": [
+        {
+            "type": "shell",
+            "inline": [
+				"sudo apt-get update",
+				"sudo apt-get install ca-certificates curl",
+				"sudo install -m 0755 -d /etc/apt/keyrings",
+				"sudo curl -fsSL https://download.docker.com/linux/debian/gpg -o /etc/apt/keyrings/docker.asc",
+				"sudo chmod a+r /etc/apt/keyrings/docker.asc",
+				"sudo tee /etc/apt/sources.list.d/docker.list > /dev/null",
+				"sudo apt-get update"
+			]
+        }
+    ]
+}
+
+yc compute image list
+
+
